@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        function test(){
+            $.ajax({
+                url:'/api/test/hello',
+                beforeSend:function(request){
+                    request.setRequestHeader("Authorization",$("#token").val())
+                },
+                success:function(result){
+                    alert(result);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="token" th:value="${jsonObject.obj.token}"/>
+<button th:onclick="test()">测试</button>
+</body>
+</html>
